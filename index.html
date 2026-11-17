@@ -50,14 +50,23 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyAA0jlzBReAlaCjIEX3Rd4ftwGZTtwXFJM",
-      authDomain: "sosmedku-58ea6.firebaseapp.com",
-      projectId: "sosmedku-58ea6",
-      storageBucket: "sosmedku-58ea6.firebasestorage.app",
-      messagingSenderId: "565963887039",
-      appId: "1:565963887039:web:5a3ad1ff3b0797f56b510a"
-    };
+    // Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAA0jlzBReAlaCjIEX3Rd4ftwGZTtwXFJM",
+  authDomain: "sosmedku-58ea6.firebaseapp.com",
+  projectId: "sosmedku-58ea6",
+  storageBucket: "sosmedku-58ea6.firebasestorage.app",
+  messagingSenderId: "565963887039",
+  appId: "1:565963887039:web:5a3ad1ff3b0797f56b510a"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
