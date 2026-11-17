@@ -12,7 +12,7 @@
   <nav class="bg-white shadow p-4 sticky top-0 z-10 flex justify-between items-center max-w-xl mx-auto">
     <h1 class="text-xl font-bold text-blue-600">SosmedKu</h1>
     <div id="auth-section">
-      <button id="btn-login" class="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-700">Login Google</button>
+      <button id="btn-login" class="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-700">Masuk Google</button>
       <div id="user-info" class="hidden flex items-center gap-2">
         <img id="user-pic" class="w-8 h-8 rounded-full" src="" alt="Avatar">
         <span id="user-name" class="text-sm font-medium"></span>
@@ -50,26 +50,21 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAA0jlzBReAlaCjIEX3Rd4ftwGZTtwXFJM",
+      authDomain: "sosmedku-58ea6.firebaseapp.com",
+      projectId: "sosmedku-58ea6",
+      storageBucket: "sosmedku-58ea6.firebasestorage.app",
+      messagingSenderId: "565963887039",
+      appId: "1:565963887039:web:5a3ad1ff3b0797f56b510a"
+    };
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAA0jlzBReAlaCjIEX3Rd4ftwGZTtwXFJM",
-  authDomain: "sosmedku-58ea6.firebaseapp.com",
-  projectId: "sosmedku-58ea6",
-  storageBucket: "sosmedku-58ea6.firebasestorage.app",
-  messagingSenderId: "565963887039",
-  appId: "1:565963887039:web:5a3ad1ff3b0797f56b510a"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
-const provider = new GoogleAuthProvider();
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    const provider = new GoogleAuthProvider();
     let currentUser = null;
 
     // Auth Handlers
