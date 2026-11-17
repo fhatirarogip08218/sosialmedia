@@ -12,7 +12,7 @@
   <nav class="bg-white shadow p-4 sticky top-0 z-10 flex justify-between items-center max-w-xl mx-auto">
     <h1 class="text-xl font-bold text-blue-600">SosmedKu</h1>
     <div id="auth-section">
-      <button id="btn-login" class="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-700">Masuk Google</button>
+      <button id="btn-login" class="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm font-semibold hover:bg-blue-700 cursor-pointer">Masuk Google</button>
       <div id="user-info" class="hidden flex items-center gap-2">
         <img id="user-pic" class="w-8 h-8 rounded-full" src="" alt="Avatar">
         <span id="user-name" class="text-sm font-medium"></span>
@@ -50,7 +50,6 @@
     import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
     import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp, setDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyAA0jlzBReAlaCjIEX3Rd4ftwGZTtwXFJM",
       authDomain: "sosmedku-58ea6.firebaseapp.com",
@@ -60,15 +59,25 @@
       appId: "1:565963887039:web:5a3ad1ff3b0797f56b510a"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const db = getFirestore(app);
     const provider = new GoogleAuthProvider();
     let currentUser = null;
 
-    // Auth Handlers
-    document.getElementById('btn-login').onclick = () => signInWithPopup(auth, provider);
+    // Pastikan tombol login mendeteksi klik dengan benar
+    const loginBtn = document.getElementById('btn-login');
+    if(loginBtn) {
+      loginBtn.onclick = async () => {
+        try {
+          await signInWithPopup(auth, provider);
+        } catch (error) {
+          console.error("Gagal login:", error);
+          alert("Gagal masuk: " + error.message);
+        }
+      };
+    }
+
     document.getElementById('btn-logout').onclick = () => signOut(auth);
 
     onAuthStateChanged(auth, (user) => {
